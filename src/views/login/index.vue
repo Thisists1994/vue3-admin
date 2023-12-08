@@ -3,16 +3,21 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form">
+        <el-form
+          class="login_form"
+          :model="loginForm"
+          :rules="rules"
+          ref="loginFormRef"
+        >
           <h1>Hello</h1>
           <h2>欢迎来到Vue3+Vite实战</h2>
-          <el-form-item>
+          <el-form-item prop="username">
             <el-input
               prefix-icon="user"
               v-model="loginForm.username"
             ></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               type="password"
               prefix-icon="lock"
@@ -25,7 +30,7 @@
               type="primary"
               size="default"
               class="login_btn"
-              @click="handelerLogin"
+              @click="submitForm(loginFormRef)"
               :loading="btnLoading"
             >
               登录
@@ -41,13 +46,52 @@
 import { reactive, ref } from 'vue';
 import useUserStore from '@/store/modules/user';
 import { useRouter } from 'vue-router';
-import { ElNotification } from 'element-plus';
+import { ElNotification, FormInstance } from 'element-plus';
 
 const $route = useRouter();
 const userStore = useUserStore();
 const loginForm = reactive({ username: 'admin', password: '111111' });
 const btnLoading = ref(false);
 
+// 自定义校验规则
+const validatorUserName = (_ruler: any, value: any, callback: any) => {
+  if (value.length >= 5) {
+    callback();
+  } else {
+    callback(new Error('账号长度至少五位'));
+  }
+};
+const validatorPassWord = (_ruler: any, value: any, callback: any) => {
+  if (value.length == 6) {
+    callback();
+  } else {
+    callback(new Error('密码长度为六位数'));
+  }
+};
+
+const rules = reactive({
+  username: [
+    // { required: true, message: '账号不可为空', trigger: 'change' }
+    { validator: validatorUserName, trigger: 'blur' },
+  ],
+  password: [
+    // { min: 6, max: 6, message: '密码长度为6位', trigger: 'blur' }
+    { validator: validatorPassWord, trigger: 'blur' },
+  ],
+});
+const loginFormRef = ref();
+// 表单验证
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      handelerLogin();
+    } else {
+      console.log('error submit!', fields);
+    }
+  });
+};
+// 登录按钮
 const handelerLogin = () => {
   btnLoading.value = true;
   userStore
