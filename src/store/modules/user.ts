@@ -2,16 +2,24 @@
 import { defineStore } from 'pinia';
 import { reqLogin } from '@/api/user/index.ts';
 import { getToken, setToken, removeToken } from '@/utils/auth';
+import constantRoutes from '@/router/routes';
 import type { loginParam, loginResponseData } from '@/api/user/type';
+import type { RouteRecordRaw } from 'vue-router';
+
+interface UserState {
+  token: string | null;
+  menuRouters: RouteRecordRaw[];
+}
 /**
  * state 存储数据的地方
  * actions 异步|逻辑的部分
  * getters 计算属性
  */
 const useUserStore = defineStore('user', {
-  state: () => {
+  state: (): UserState => {
     return {
       token: getToken(),
+      menuRouters: constantRoutes,
     };
   },
   actions: {

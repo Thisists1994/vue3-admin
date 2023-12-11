@@ -3,6 +3,18 @@
     <!-- 左侧菜单 -->
     <div class="layout_slider">
       <Logo></Logo>
+      <el-scrollbar class="scrollbar">
+        <el-menu
+          :background-color="sliderConfig.menuBg"
+          :text-color="sliderConfig.menuText"
+          :unique-opened="false"
+          :active-text-color="sliderConfig.menuActiveText"
+          :collapse-transition="false"
+          mode="vertical"
+        >
+          <Menu :menuList="userStore.menuRouters"></Menu>
+        </el-menu>
+      </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
     <div class="layout_tabbar">456</div>
@@ -15,6 +27,10 @@
 
 <script setup lang="ts">
 import Logo from './logo/index.vue';
+import Menu from './menu/index.vue';
+import sliderConfig from '@/styles/slider.module.scss';
+import useUserStore from '@/store/modules/user';
+const userStore = useUserStore();
 </script>
 
 <style scoped lang="scss">
@@ -28,6 +44,14 @@ import Logo from './logo/index.vue';
     width: $base-menu-width;
     height: 100vh;
     background: $base-menu-background;
+    color: #fff;
+    .scrollbar {
+      width: 100%;
+      height: calc(100vh - $base-menu-logo-height);
+      .el-menu {
+        border-right: none;
+      }
+    }
   }
   .layout_tabbar {
     width: calc(100% - $base-menu-width);
