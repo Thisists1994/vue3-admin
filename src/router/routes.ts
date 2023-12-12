@@ -1,3 +1,4 @@
+import Layout from '@/layout/index.vue';
 // 对外暴露配置路由
 const constantRoutes = [
   {
@@ -12,7 +13,7 @@ const constantRoutes = [
   },
   {
     path: '/',
-    component: () => import('@/layout/index.vue'),
+    component: () => Layout,
     name: 'layout',
     meta: {
       title: 'layout',
@@ -44,7 +45,7 @@ const constantRoutes = [
   },
   {
     path: '/acl',
-    component: () => import('@/layout/index.vue'),
+    component: () => Layout,
     name: 'Acl',
     meta: {
       title: '权限管理',
@@ -86,7 +87,7 @@ const constantRoutes = [
   },
   {
     path: '/product',
-    component: () => import('@/layout/index.vue'),
+    component: () => Layout,
     name: 'Product',
     meta: {
       title: '商品管理',

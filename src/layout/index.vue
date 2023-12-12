@@ -21,7 +21,6 @@
     <div class="layout_tabbar">456</div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
-      <!-- <p style="height: 10000px">内容展示</p> -->
       <router-view :key="key"></router-view>
     </div>
   </div>
@@ -38,6 +37,11 @@ const route = useRoute();
 const key = () => {
   console.log(route.path);
   return route.path;
+};
+</script>
+<script lang="ts">
+export default {
+  name: 'Layout',
 };
 </script>
 
