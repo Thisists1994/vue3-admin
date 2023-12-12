@@ -145,28 +145,6 @@ const constantRoutes = [
       hidden: true,
       icon: 'Warning',
     },
-    children: [
-      {
-        path: '/ceshi1',
-        component: () => import('@/views/ceshi1.vue'),
-        name: 'ceshi1',
-        meta: {
-          title: '测试1',
-          hidden: false,
-          icon: 'PieChart',
-        },
-      },
-      {
-        path: '/ceshi2',
-        component: () => import('@/views/ceshi2.vue'),
-        name: 'ceshi2',
-        meta: {
-          title: '测试2',
-          hidden: false,
-          icon: 'PieChart',
-        },
-      },
-    ],
   },
   {
     path: '/demo',
