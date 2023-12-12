@@ -11,6 +11,7 @@
           :active-text-color="sliderConfig.menuActiveText"
           :collapse-transition="false"
           mode="vertical"
+          router
         >
           <Menu :menuList="userStore.menuRouters"></Menu>
         </el-menu>
@@ -20,7 +21,8 @@
     <div class="layout_tabbar">456</div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
-      <p style="height: 10000px">内容展示</p>
+      <!-- <p style="height: 10000px">内容展示</p> -->
+      <router-view :key="key"></router-view>
     </div>
   </div>
 </template>
@@ -30,7 +32,13 @@ import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
 import sliderConfig from '@/styles/slider.module.scss';
 import useUserStore from '@/store/modules/user';
+import { useRoute } from 'vue-router';
 const userStore = useUserStore();
+const route = useRoute();
+const key = () => {
+  console.log(route.path);
+  return route.path;
+};
 </script>
 
 <style scoped lang="scss">
