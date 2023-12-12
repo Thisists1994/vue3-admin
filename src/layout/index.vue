@@ -21,7 +21,7 @@
     <div class="layout_tabbar">456</div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
-      <router-view :key="key"></router-view>
+      <Appmain></Appmain>
     </div>
   </div>
 </template>
@@ -30,14 +30,9 @@
 import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
 import sliderConfig from '@/styles/slider.module.scss';
+import Appmain from './AppMain/index.vue';
 import useUserStore from '@/store/modules/user';
-import { useRoute } from 'vue-router';
 const userStore = useUserStore();
-const route = useRoute();
-const key = () => {
-  console.log(route.path);
-  return route.path;
-};
 </script>
 <script lang="ts">
 export default {

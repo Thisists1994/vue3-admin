@@ -13,7 +13,7 @@ const constantRoutes = [
   },
   {
     path: '/',
-    component: () => Layout,
+    component: Layout,
     name: 'layout',
     meta: {
       title: 'layout',
@@ -45,7 +45,7 @@ const constantRoutes = [
   },
   {
     path: '/acl',
-    component: () => Layout,
+    component: Layout,
     name: 'Acl',
     meta: {
       title: '权限管理',
@@ -87,7 +87,7 @@ const constantRoutes = [
   },
   {
     path: '/product',
-    component: () => Layout,
+    component: Layout,
     name: 'Product',
     meta: {
       title: '商品管理',
