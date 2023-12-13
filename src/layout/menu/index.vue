@@ -3,10 +3,11 @@
     <!-- 没有子路由 -->
     <template v-if="!item.children">
       <el-menu-item v-if="!item.meta.hidden" :index="item.path">
+        <!-- icon放到插槽外，避免图标也被折叠 -->
+        <el-icon>
+          <component :is="item.meta.icon"></component>
+        </el-icon>
         <template #title>
-          <el-icon>
-            <component :is="item.meta.icon"></component>
-          </el-icon>
           <span>{{ item.meta.title }}</span>
         </template>
       </el-menu-item>
@@ -18,10 +19,10 @@
         :key="item.path"
         :index="item.children[0].path"
       >
+        <el-icon>
+          <component :is="item.children[0].meta.icon"></component>
+        </el-icon>
         <template #title>
-          <el-icon>
-            <component :is="item.children[0].meta.icon"></component>
-          </el-icon>
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
