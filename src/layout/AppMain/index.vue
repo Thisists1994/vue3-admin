@@ -18,6 +18,7 @@ const route = useRoute();
 const key = computed(() => {
   return route.path;
 });
+console.log(key)
 </script>
 
 <style lang="scss" scoped>
