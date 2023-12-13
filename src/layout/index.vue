@@ -19,7 +19,9 @@
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar">456</div>
+    <div class="layout_tabbar">
+      <Tabbar></Tabbar>
+    </div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
       <Appmain></Appmain>
@@ -33,6 +35,7 @@ import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
 import sliderConfig from '@/styles/slider.module.scss';
 import Appmain from './AppMain/index.vue';
+import Tabbar from './tabbar/index.vue';
 import useUserStore from '@/store/modules/user';
 const userStore = useUserStore();
 // const $route = useRoute();
@@ -67,7 +70,6 @@ export default {
   .layout_tabbar {
     width: calc(100% - $base-menu-width);
     height: $base-tabbar-height;
-    background: cyan;
     position: fixed;
     top: 0;
     left: $base-menu-width;
