@@ -11,6 +11,7 @@
           :active-text-color="sliderConfig.menuActiveText"
           :collapse-transition="false"
           mode="vertical"
+          :default-active="$route.path"
           router
         >
           <Menu :menuList="userStore.menuRouters"></Menu>
@@ -27,12 +28,15 @@
 </template>
 
 <script setup lang="ts">
+// import { useRoute } from 'vue-router';
 import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
 import sliderConfig from '@/styles/slider.module.scss';
 import Appmain from './AppMain/index.vue';
 import useUserStore from '@/store/modules/user';
 const userStore = useUserStore();
+// const $route = useRoute();
+// console.log($route.path);
 </script>
 <script lang="ts">
 export default {

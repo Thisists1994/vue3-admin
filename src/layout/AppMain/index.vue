@@ -12,13 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { computed } from 'vue';
-const route = useRoute();
-const key = computed(() => {
-  return route.path;
-});
-console.log(key)
+// import { useRoute } from 'vue-router';
+// import { computed } from 'vue';
+// const route = useRoute();
+// const key = computed(() => {
+//   return route.path;
+// });
+// console.log(key)
 </script>
 
 <style lang="scss" scoped>
