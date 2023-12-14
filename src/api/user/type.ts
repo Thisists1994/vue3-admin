@@ -6,6 +6,7 @@ export interface loginParam {
 interface dataType {
   token?: string;
   message?: string;
+  username?: string;
 }
 // 登录接口返回的数据类型
 export interface loginResponseData {

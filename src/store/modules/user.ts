@@ -30,12 +30,12 @@ const useUserStore = defineStore('user', {
       const res: loginResponseData = await reqLogin(param);
       const {
         code,
-        data: { token, message },
+        data: { token, message, username },
       } = res;
       if (code == 200) {
         this.token = <string>token;
         // 由于pinia|vuex存储数据其实就是利用的js对象,不可持久化，所以本地持久化存储一份
-        // localStorage.setItem('token', <string>token);
+        if (username) localStorage.setItem('userName', username);
         setToken(token!);
         this.SET_TOKEN(token!);
         return 'ok';
