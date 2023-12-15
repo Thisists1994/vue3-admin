@@ -3,7 +3,7 @@
     <!-- <button class="logout-btn" @click="handleLogout">退出</button>
     <div class="chat-container">
         <Contacts :contacts="contacts" />
-        <Message :socket="socket" v-if="currentChatStore.currentChat" />
+        <Message :socket="socket" v-if  ="currentChatStore.currentChat" />
         <Welcome v-else />
     </div> -->
     聊天窗口
@@ -33,39 +33,49 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import useWebSocket from '@/utils/webSocket';
 const username = ref('');
 const testTxt = ref('');
-const ws_host =
-  'wss://localtest.wemate.ai/ws?connection_id=10085&user_id=&access_token=&model_id=';
-const socket = new WebSocket(ws_host);
 type SocketMsgType = {
   name: string;
   message: string;
 };
 const resPrivateMsg = ref<SocketMsgType[]>([]);
-const initWs = () => {
-  // 监听socket连接
-  socket.onopen = onOpen;
-  // 监听socket错误信息
-  socket.onerror = onError;
-  // 监听socket消息
-  socket.onmessage = onMessage;
-};
-const onOpen = (val: any) => {
-  console.log('连接成功', val);
-};
-const onError = (e: any) => {
-  console.log('连接错误', e);
-};
-const onMessage = (res: any) => {
-  console.log('收到服务端消息', res.data);
-  const SocketMsgVO = {
-    name: 'ws',
-    message: res.data,
+const storeInfo = ref({
+  connection_id: '10085',
+  user_id: '',
+  access_token: '',
+  model_id: '',
+});
+
+// const ws_host =
+//   'wss://localtest.wemate.ai/ws?connection_id=10085&user_id=&access_token=&model_id=';
+// console.log(import.meta.env.VITE_USER_NODE_ENV)
+const url = 'wss://localtest.wemate.ai/ws';
+const { connection_id, user_id, access_token, model_id } = storeInfo.value;
+let ws_host = `${url}?connection_id=${connection_id}&user_id=${user_id}&access_token=${access_token}&model_id=${model_id}`;
+// socket = new WebSocket(ws_host);
+// wsAttribute.wsConnect = new WebSocket(ws_host);
+// 在组件中使用 WebSocket 连接函数
+const { socket, createWebSocket, wsReset } = useWebSocket(ws_host);
+createWebSocket();
+
+if (socket.value) {
+  // 收到ws消息
+  socket.value.onmessage = (res: any) => {
+    console.log('ws消息：' + res.data);
+
+    const SocketMsgVO = {
+      name: 'ws',
+      message: res.data,
+    };
+    resPrivateMsg.value.push(SocketMsgVO);
+    console.log(resPrivateMsg.value);
+    // 收到服务器信息，心跳重置
+    wsReset();
   };
-  resPrivateMsg.value.push(SocketMsgVO);
-};
-initWs();
+}
+
 // 发送消息
 const submitMsg = () => {
   // testTxt.value += '\n';
@@ -74,7 +84,7 @@ const submitMsg = () => {
     message: testTxt.value,
   };
   resPrivateMsg.value.push(SocketMsgVO);
-  socket.send(testTxt.value);
+  socket.value?.send(testTxt.value);
   testTxt.value = '';
 };
 </script>
