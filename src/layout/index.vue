@@ -80,7 +80,7 @@ export default {
     height: calc(100vh - $base-tabbar-height);
     left: $base-menu-width;
     top: $base-tabbar-height;
-    background: pink;
+    background: #ebebeb;
     padding: 20px;
     overflow: auto;
   }

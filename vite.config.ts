@@ -1,13 +1,13 @@
 // 此页面用于配置代理跨域  vue2里的 config.js
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons' // 引入SVG需要用到的插件
-import path from 'path'
-import { viteMockServe } from 'vite-plugin-mock'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'; // 引入SVG需要用到的插件
+import path from 'path';
+import { viteMockServe } from 'vite-plugin-mock';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
-  console.log('111----' + command)
+  console.log('111----' + command);
   return {
     plugins: [
       vue(),
@@ -35,5 +35,5 @@ export default defineConfig(({ command }) => {
         },
       },
     },
-  }
-})
+  };
+});

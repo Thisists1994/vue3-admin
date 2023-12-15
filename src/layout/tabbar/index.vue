@@ -22,6 +22,7 @@ console.log();
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #dbd9d9;
   .tabber_left {
     margin-left: 20px;
     display: flex;

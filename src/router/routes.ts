@@ -138,6 +138,28 @@ const constantRoutes = [
     ],
   },
   {
+    path: '/chat',
+    component: Layout,
+    name: 'Chat',
+    meta: {
+      title: '聊天室',
+      hidden: true,
+      icon: 'ChatRound',
+    },
+    children: [
+      {
+        path: '/chat/chatPrivate',
+        component: () => import('@/views/chat/index.vue'),
+        name: 'chatPrivate',
+        meta: {
+          title: '聊天',
+          hidden: false,
+          icon: 'ChatRound',
+        },
+      },
+    ],
+  },
+  {
     path: '/404',
     component: () => import('@/views/404/index.vue'),
     name: '404',
