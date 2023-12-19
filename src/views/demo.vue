@@ -32,6 +32,17 @@ import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 const locale = zhCn;
 let token = ref('Admin Token');
+import { useHead } from '@unhead/vue';
+
+useHead({
+  title: 'Website Title-Demo',
+  meta: [
+    {
+      name: '关键字 Demo',
+      content: '描述 这只是个Demo',
+    },
+  ],
+});
 onMounted(() => {
   // request({
   //   url: '/user/info',

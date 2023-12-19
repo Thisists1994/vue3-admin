@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import Breadcrumb from './breadcrumb/index.vue';
-import Handler from './Handler/index.vue';
+import Handler from './handler/index.vue';
 console.log();
 </script>
 

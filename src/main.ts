@@ -20,6 +20,7 @@ import globalComponet from '@/components';
 
 // 全局加载 icons-vue
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import { createHead } from '@unhead/vue';
 // const app = createApp(App);
 // app.use(ElementPlus); // 安装element-plus插件
 // app.use(globalComponet);
@@ -44,7 +45,6 @@ export const createApp = ViteSSG(
     // install plugins etc.
     app.use(ElementPlus); // 安装element-plus插件
     app.use(globalComponet);
-    app.use(router);
     app.use(pinia);
     for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
       app.component(key, component);
