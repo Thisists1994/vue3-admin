@@ -8,6 +8,7 @@
     "build": "vue-tsc && vite build",
     "build:test": "vue-tsc && vite build --mode test",
     "build:pro": "vue-tsc && vite build --mode production",
+    "build:ssg": "vite-ssg build",
     "preview": "vite preview",
     "lint": "eslint src",
     "fix": "eslint src --fix",
@@ -54,6 +55,7 @@
     "vite": "^4.4.5",
     "vite-plugin-mock": "2.9.8",
     "vite-plugin-svg-icons": "^2.0.1",
+    "vite-ssg": "^0.23.5",
     "vue-tsc": "^1.8.5"
   }
 }

@@ -1,6 +1,7 @@
 import Layout from '@/layout/index.vue';
+import type { RouteRecordRaw } from 'vue-router';
 // 对外暴露配置路由
-const constantRoutes = [
+const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
     component: () => import('@/views/login/index.vue'),

@@ -21,6 +21,12 @@ export default defineConfig(({ command }) => {
         localEnabled: command === 'serve', // 保证开发阶段可以使用mock接口
       }),
     ],
+    ssgOptions: {
+      includedRoutes(paths, routes) {
+        // exclude all the route paths that contains 'foo'
+        return ['/screen','/demo'];
+      },
+    },
     server: {
       host: '0.0.0.0',
     },
